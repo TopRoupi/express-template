@@ -10,9 +10,11 @@ const app = express();
 const thingsRoute = require("./routes/things_route");
 
 // DB CONNECTION
-// mongoose.connect(`${process.env.DB_URI}`, (err) =>
-//   err ? console.log(err) : console.log("Connected to DB")
-// );
+// models = require("../../db/models/index")
+//
+// const thing = new models.Thing({ name: "aaAA" });
+// thing.save()
+// console.log(thing)
 
 // MIDDLEWARES
 app.use(cors({ origin: "*" }));
