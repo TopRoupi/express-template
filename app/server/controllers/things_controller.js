@@ -1,7 +1,4 @@
-// const axios = require("axios");
-models = require("../../../db/models/index")
-
-const Thing = models.Thing
+const Thing = require("../models/thing")
 
 const getThings = async (req, res) => {
   const things = await Thing.findAll()
