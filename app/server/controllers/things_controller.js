@@ -1,4 +1,4 @@
-const Thing = require("../models/thing")
+const { Thing } = require("../models/index")
 
 const getThings = async (req, res) => {
   const things = await Thing.findAll()

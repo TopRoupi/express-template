@@ -1,26 +1,36 @@
 const fs = require('fs');
+const { ConnectionString } = require("connection-string");
+require("dotenv").config();
+
+const database_uri = new ConnectionString(process.env.DATABASE_URL || "postgresql://postgres:postgres@localhost:5432");
+
+const app_name = require('../../package.json').name
+
+const default_config = {
+  username: database_uri.user,
+  password: database_uri.password,
+  database: database_uri?.path?.[0],
+  host: database_uri.hosts[0].name,
+  port: database_uri.hosts[0].port,
+  dialect: "postgres"
+}
 
 module.exports = {
   development: {
-    username: 'postgres',
-    password: 'postgres',
-    database: 'test_development',
-    host: '127.0.0.1',
-    dialect: 'postgres',
+    ... default_config,
+    database: database_uri?.path?.[0] || `${app_name}_development`,
   },
   test: {
-    username: 'postgres',
-    password: 'postgres',
-    database: 'test_test',
-    host: '127.0.0.1',
-    dialect: 'postgres',
+    ... default_config,
+    database: database_uri?.path?.[0] || `${app_name}_test`,
   },
   production: {
-    username: process.env.DB_USERNAME,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME,
-    host: process.env.DB_HOSTNAME,
-    port: process.env.DB_PORT,
-    dialect: 'postgres',
+    ... default_config,
+    pool: {
+      max: 5,
+      min: 0,
+      acquire: 30000,
+      idle: 10000
+    }
   }
-};
+}
