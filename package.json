@@ -2,7 +2,7 @@
   "name": "express-test",
   "version": "1.0.0",
   "scripts": {
-    "start": "node app/server/app.js",
+    "start": "node app/server/cluster.js",
     "build": "cd app/client && npm install && npm run build",
     "client-dev": "cd app/client && npm install && npm start",
     "test": "jest --watchAll --detectOpenHandles"
@@ -17,6 +17,7 @@
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
+    "forever": "^4.0.3",
     "morgan": "^1.10.0",
     "pg": "^8.7.3",
     "pg-hstore": "^2.3.4",

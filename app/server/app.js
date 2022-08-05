@@ -23,6 +23,4 @@ app.get("*", (req, res) => {
   res.sendFile(path.resolve(__dirname, "../client/build", "index.html"));
 });
 
-// LISTEN
-const port = process.env.PORT || 3002
-app.listen(port, () => console.log(`Server Spinning port ${port} - using ${process.env.NODE_ENV || "development"} environment`));
+module.exports = app;
