@@ -24,11 +24,19 @@ is recommended you use an admin user in development as sequelize need the permis
 but if that is not possible you can pass a database name using this format postgresql://USER:PASSWORD@HOST:PORT/DATABASE
 
 ```
-  npm install -g foreman
-  npx foreman start -f Procfile.dev
+npm install -g foreman
+npx foreman start -f Procfile.dev
+```
+
+# deploy
+
+make sure to set the env var REACT_APP_API_ENDPOINT to the appropriate value in production
+```
+git push heroku master
 ```
 
 # test
-todo
-
+```
+jest ./test
+```
 

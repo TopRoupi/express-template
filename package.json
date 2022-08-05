@@ -2,7 +2,7 @@
   "name": "express-test",
   "version": "1.0.0",
   "scripts": {
-    "start": "node app/server/listen.js",
+    "start": "node app/server/app.js",
     "build": "cd app/client && npm install && npm run build",
     "client-dev": "cd app/client && npm install && npm start",
     "test": "jest --watchAll --detectOpenHandles"

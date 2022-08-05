@@ -23,6 +23,7 @@ module.exports = {
   test: {
     ... default_config,
     database: database_uri?.path?.[0] || `${app_name}_test`,
+    logging: false
   },
   production: {
     ... default_config,
