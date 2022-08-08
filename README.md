@@ -18,6 +18,7 @@ curl localhost:3002/api/things
 if you have a local postgres with different credentials from the default you can edit them using this .env file
 ```
 DATABASE_URL="postgresql://postgres:postgres@localhost:5432"
+SECRET_KEY="pls_set_a_real_value_here_in_production"
 ```
 the format is postgresql://USER:PASSWORD@HOST:PORT
 is recommended you use an admin user in development as sequelize need the permission to create new databases

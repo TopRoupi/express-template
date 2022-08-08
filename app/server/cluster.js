@@ -2,7 +2,7 @@ var cluster = require('cluster')
 const app = require("./app")
 
 if (cluster.isMaster) {
-  var cpuCount = process.env.WORKERS || require('os').cpus().length;
+  var cpuCount = process.env.WORKERS || 1;
 
   for (var i = 0; i < cpuCount; i += 1) {
     cluster.fork()
