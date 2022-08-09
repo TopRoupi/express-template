@@ -7,7 +7,7 @@ const signUp = async (req, res) => {
       res.send({message: "user created"})
     })
     .catch((error) => {
-      res.send({error: error.errors[0].message})
+      res.send({error: error})
     })
 }
 
@@ -17,7 +17,7 @@ const login = async (req, res) => {
       if(data.check_password(req.body.password) == false)
         return res.send({error: "invalid password"});
       req.session.user_id = data.id
-      res.send({session_id: req.session.id})
+      res.send({message: `logged in as user ${data.name}`})
     })
     .catch(() => {
       res.send({error: "user not found"});
