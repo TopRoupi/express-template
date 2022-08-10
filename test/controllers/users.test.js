@@ -34,7 +34,7 @@ describe("users controller", () => {
     await request(app)
       .post("/api/sign_up")
       .send({name: this.user.name, password: this.user.password})
-      .expect(200)
+      .expect(422)
       .expect("Content-type", /json/)
       .then(async (serverRes) => {
         expect(serverRes.body).toEqual(expect.any(Object));
@@ -75,7 +75,21 @@ describe("users controller", () => {
     await request(app)
       .post("/api/login")
       .send({name: this.user.name, password: "wrong_password"})
-      .expect(200)
+      .expect(401)
+      .expect("Content-type", /json/)
+      .then(async (serverRes) => {
+        expect(serverRes.body).toEqual(expect.any(Object));
+        expect(serverRes.body).toEqual(
+          expect.objectContaining({ error: expect.any(String) })
+        )
+      })
+  });
+
+  test("post /api/login should return an error if not user is found", async () => {
+    await request(app)
+      .post("/api/login")
+      .send({name: this.user.name, password: this.user.password})
+      .expect(404)
       .expect("Content-type", /json/)
       .then(async (serverRes) => {
         expect(serverRes.body).toEqual(expect.any(Object));
@@ -116,7 +130,7 @@ describe("users controller", () => {
 
     await request(app)
       .get("/api/logged_user")
-      .expect(200)
+      .expect(401)
       .expect("Content-type", /json/)
       .then(async (serverRes) => {
         expect(serverRes.body).toEqual(expect.any(Object));
