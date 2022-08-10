@@ -38,6 +38,9 @@ git push heroku master
 
 # test
 ```
+NODE_ENV="test" npx sequelize-cli db:create
+NODE_ENV="test" npx sequelize-cli db:migrate
+
 jest ./test
 ```
 

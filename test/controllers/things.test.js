@@ -1,4 +1,4 @@
-const app = require("../../app/server/index");
+const app = require("../../app/server/app");
 const { Thing } = require("../../app/server/models/index");
 const request = require("supertest");
 jest.setTimeout(20000);
